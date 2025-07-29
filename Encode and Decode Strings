@@ -1,0 +1,34 @@
+
+
+class Solution {
+    int cnt[];
+    public String encode(List<String> strs) {
+        if(strs.size()==0) return "";
+        cnt=new int[strs.size()];
+        String str="";
+        String strss[]=strs.toArray(new String[0]);
+        int i=0;
+        for(String s:strss)
+        {
+            cnt[i++]=s.length();
+            str=str+s;
+        }
+        return str;
+    }
+
+    public List<String> decode(String str) {
+        
+        List<String> strs=new ArrayList<>();
+          if(str=="") return strs;
+
+            int start=0;int i=0;
+            while(start+cnt[i]<str.length())
+            {
+                strs.add(str.substring(start,start+cnt[i]));
+                start=start+cnt[i];
+                i++;
+            }
+            strs.add(str.substring(start,str.length()));
+            return strs;
+    }
+}
